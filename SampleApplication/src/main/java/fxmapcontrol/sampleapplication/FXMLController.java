@@ -23,6 +23,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -54,6 +55,8 @@ public class FXMLController implements Initializable {
     private ComboBox mapLayerComboBox;
     @FXML
     private ComboBox projectionComboBox;
+	@FXML
+	private CheckBox graticuleCheckBox;
 
     @FXML
     private void handlePressed(MouseEvent event) {
@@ -62,9 +65,19 @@ public class FXMLController implements Initializable {
         }
     }
 
+	@FXML
+	private void controlGraticuleVisibility(ActionEvent e) {
+		if (graticuleCheckBox.isSelected()) {
+			mapGraticule.setVisible(true);
+		} else {
+			mapGraticule.setVisible(false);
+		}
+	}
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+    	
+		mapGraticule.setVisible(false);
 //        GeoToolsProjection wgs84zone32N = new GeoToolsProjection();
 //        wgs84zone32N.setWKT("PROJCS[\"WGS 84 / UTM zone 32N\","
 //                + "GEOGCS[\"WGS 84\","
